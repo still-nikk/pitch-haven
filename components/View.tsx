@@ -3,6 +3,11 @@ import Ping from "./Ping";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_VIEWS_QUERY } from "@/sanity/lib/queries";
 
+type StartupViews = {
+  _id: string;
+  views: number;
+};
+
 const View = async ({ id }: { id: string }) => {
   if (!id) {
     console.error("ID is undefined!");
@@ -11,7 +16,7 @@ const View = async ({ id }: { id: string }) => {
 
   const { views: totalViews } = await client
     .withConfig({ useCdn: false })
-    .fetch(STARTUP_VIEWS_QUERY, { id });  
+    .fetch<StartupViews>(STARTUP_VIEWS_QUERY, { id });
 
   // Asynchronously update the view count without blocking rendering
   incrementViews(id);

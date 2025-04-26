@@ -19,7 +19,7 @@ const StartupForm = () => {
   interface FormState {
     error: string;
     status: "INITIAL" | "SUCCESS" | "ERROR";
-  }  
+  }
   const handleFormSubmit = async (prevState: FormState, formData: FormData) => {
     try {
       const formValues = {
@@ -31,7 +31,8 @@ const StartupForm = () => {
       };
 
       await formSchema.parseAsync(formValues);
-      const result = await createPitch(prevState, formData, pitch);
+      // Only pass formData and pitch to createPitch
+      const result = await createPitch(formData, pitch);
       if (result.status == "SUCCESS") {
         toast.success(
           "Congratulations! Your startup was successfully pitched."
@@ -42,11 +43,8 @@ const StartupForm = () => {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
-
         setErrors(fieldErrors as unknown as Record<string, string>);
-
         toast.error("Please check your input and try again.");
-
         return { ...prevState, error: "Validation Failed", status: "ERROR" };
       }
       toast.error("An unexpected error occurred.");
@@ -57,6 +55,7 @@ const StartupForm = () => {
       };
     }
   };
+
   const [, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",

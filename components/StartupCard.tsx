@@ -4,12 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "./ui/button";
-import { Author, Startup } from "@/sanity/types";
 import { Skeleton } from "./ui/skeleton";
+import { StartupCardType } from "@/types/startup";
 
-export type StartupTypeCard = Omit<Startup, "author"> & { author?: Author };
-
-const StartupCard = ({ post }: { post: StartupTypeCard }) => {
+const StartupCard = ({ post }: { post: StartupCardType }) => {
   const {
     _id,
     _createdAt,
@@ -51,8 +49,8 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
       </div>
       <Link href={`startup/${_id}`}>
         <p className="startup-card_desc">{description}</p>
-        <img
-          src={image}
+        <Image
+          src={image || ""}
           alt="placeholder"
           height={48}
           width={48}

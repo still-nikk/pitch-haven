@@ -1,11 +1,11 @@
 "use server";
 
-import { auth } from "@/auth";
+import { auth } from "@/types/auth";
 import { parseServerActionResponse } from "@/lib/utils";
 import slugify from "slugify";
 import { writeClient } from "./write-client";
 
-export const createPitch = async (state: any, form: FormData, pitch: string) => {
+export const createPitch = async (form: FormData, pitch: string) => {
   const session = await auth();
 
   if (!session)

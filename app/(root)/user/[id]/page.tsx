@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth } from "@/types/auth";
 import { client } from "@/sanity/lib/client";
 import { AUTHOR_BY_ID } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
@@ -43,7 +43,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             {session?.id === id ? "Your" : "All"} Startups
           </p>
           <ul className="card_grid-sm">
-            <Suspense fallback={<StartupCardSkeleton />}>q
+            <Suspense fallback={<StartupCardSkeleton />}>
+              q
               <UserStartups id={id} />
             </Suspense>
           </ul>

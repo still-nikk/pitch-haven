@@ -1,5 +1,5 @@
-import { auth, signIn, signOut } from "@/auth";
-import { BadgePlus, BadgePlusIcon, LogOut } from "lucide-react";
+import { auth, signIn, signOut } from "@/types/auth";
+import { BadgePlusIcon, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
