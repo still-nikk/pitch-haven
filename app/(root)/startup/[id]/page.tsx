@@ -31,8 +31,8 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <p className="sub-heading !max-w-5xl">{post?.description}</p>
       </section>
       <section className="section_container">
-        <img
-          src={post.image || undefined}
+        <Image
+          src={post.image || ""}
           alt="Thumbnail"
           className="w-full h-[100vh] object-cover rounded-xl drop-shadow-xl "
         />

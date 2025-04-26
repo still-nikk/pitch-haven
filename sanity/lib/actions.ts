@@ -32,7 +32,7 @@ export const createPitch = async (form: FormData, pitch: string) => {
       },
       author: {
         _type: "reference",
-        _ref: session?.id,
+        _ref: session?.user?.id,
       },
       pitch,
     };

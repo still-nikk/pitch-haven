@@ -2,7 +2,7 @@ import StartupCard from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { auth } from "@/types/auth";
+import { auth } from "@/types/auth"; // ✅ Correct auth import
 import { StartupCardType } from "@/types/startup";
 
 export default async function Home({
@@ -17,7 +17,7 @@ export default async function Home({
   };
 
   const session = await auth();
-  console.log(session?.id);
+  console.log(session?.user?.id); // ✅ Correct usage
 
   const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
 
