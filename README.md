@@ -1,5 +1,11 @@
 # PitchHaven - A Virtual Pitch Competition Platform
 
+## Document:
+System Requirement Specification Document
+
+## Title:
+System Requirement Specification for Pitch Haven
+
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [System Overview](#system-overview)
@@ -129,8 +135,9 @@ Contributions are welcome! Follow these steps:
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
-
 ---
 **Maintainer:** 
 Nikunj | [LinkedIn](https://www.linkedin.com/in/nikunj-maheshwari1/) | [GitHub](https://github.com/still-nikk)
 Priyanka | [LinkedIn](https://www.linkedin.com/in/priyanka-gupta-50809b252/) | [GitHub](https://github.com/priyankag12/)
+
+
