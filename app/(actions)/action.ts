@@ -14,7 +14,7 @@ export const incrementViews = async (id: string) => {
     await writeClient.patch(id).set({ views: (views || 0) + 1 }).commit();
 
     // Revalidate the page to reflect updated views
-    revalidatePath(`/your-route/${id}`); // Adjust to match your actual route
+    revalidatePath(`/startup/${id}`); // Adjust to match your actual route
   } catch (error) {
     console.error("Error incrementing views:", error);
   }
