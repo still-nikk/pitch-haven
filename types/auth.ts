@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
 import { client } from "../sanity/lib/client";
 import { writeClient } from "../sanity/lib/write-client";
 import { AUTHOR_BY_GITHUB_ID } from "../sanity/lib/queries";
@@ -41,6 +42,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         } as ExtendedUser;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.AUTH_GOOGLE_ID as string,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+      profile(profile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          username: profile.email.split("@")[0], // or generate something
+          bio: "", 
+        } as ExtendedUser;
+      },
+    }),
   ],
   callbacks: {
     async signIn({ user }) {
@@ -74,6 +89,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         (session.user as { id?: string }).id = token.id;
       }
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      // Redirect to the homepage after successful login
+      return baseUrl; // This will redirect users to the homepage
     },
   },
 });
