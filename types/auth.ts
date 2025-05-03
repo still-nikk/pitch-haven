@@ -52,7 +52,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: profile.email,
           image: profile.picture,
           username: profile.email.split("@")[0], // or generate something
-          bio: "", 
+          bio: "",
         } as ExtendedUser;
       },
     }),
